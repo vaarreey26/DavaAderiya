@@ -42,17 +42,17 @@
         <h2>Mengapa Penting?</h2>
         <div class="features">
             <div class="card reveal">
-                <img src="WhatsApp Image 2025-09-11 at 08.57.37.jpeg" alt="Cek Fakta">
+                <img src="WhatsApp Image 2025-09-11 at 08.57.37.jpeg" alt="">
                 <h3>Cek Fakta</h3>
                 <p>Saring sebelum sharing. Pastikan informasi yang dibagikan benar adanya.</p>
             </div>
             <div class="card reveal">
-                <img src="WhatsApp Image 2025-09-11 at 08.57.38 (1).jpeg" alt="Etika Digital">
+                <img src="WhatsApp Image 2025-09-11 at 08.57.38 (1).jpeg" alt="">
                 <h3>Etika Digital</h3>
                 <p>Gunakan bahasa yang sopan, hindari ujaran kebencian, dan jaga perasaan orang lain.</p>
             </div>
             <div class="card reveal">
-                <img src="WhatsApp Image 2025-09-11 at 08.57.38.jpeg" alt="Konten Positif">
+                <img src="WhatsApp Image 2025-09-11 at 08.57.38.jpeg" alt="">
                 <h3>Konten Positif</h3>
                 <p>Jadikan media sosial sebagai tempat berbagi hal-hal yang bermanfaat.</p>
             </div>
@@ -82,19 +82,17 @@
 
     <!-- Footer -->
     <footer class="reveal">
-        <p>&copy; 2025 Kampanye Literasi Digital | Bijak Bermedia Sosial</p>
+        <p>Bijak Bermedia Sosial & Jangan Asal Sebar</p>
     </footer>
 
-    <!-- Script animasi -->
     <script>
-        // Intersection Observer untuk animasi scroll
         const reveals = document.querySelectorAll('.reveal');
 
         const observer = new IntersectionObserver((entries, obs) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    obs.unobserve(entry.target); // supaya animasi hanya sekali
+                    obs.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.2 });
