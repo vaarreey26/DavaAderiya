@@ -19,6 +19,19 @@
       background: #111;
       color: #eaeaea;
       line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Animasi dasar */
+    .reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.9s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     /* Navbar */
@@ -224,25 +237,28 @@
       font-size: 0.9rem;
     }
 
+    /* Fitur */
     .features {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+      justify-items: center;
+      /* biar card rata tengah */
     }
 
-    .card {
+    .features .card {
       background: #1f1f1f;
       border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       padding: 20px;
-      flex: 1 1 250px;
+      width: 280px;
       text-align: center;
-      transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-        box-shadow 0.6s cubic-bezier(0.25, 1, 0.5, 1),
-        border 0.6s ease;
-      cursor: pointer;
-      border: 2px solid transparent;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    }
+
+    .features .card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
     }
 
     .card img {
@@ -263,7 +279,7 @@
 <body>
 
   <!-- Navbar -->
-  <nav>
+  <nav class="reveal">
     <h1>Literasi Digital</h1>
     <ul>
       <li><a href="#kampanye">Tentang</a></li>
@@ -274,7 +290,7 @@
   </nav>
 
   <!-- Hero -->
-  <header>
+  <header class="reveal">
     <div>
       <h2>Bijak Bermedia Sosial & Jangan Asal Sebar</h2>
       <p>Kampanye literasi digital untuk mengajak masyarakat agar lebih berhati-hati, bertanggung jawab, dan tidak
@@ -283,7 +299,7 @@
   </header>
 
   <!-- Kampanye -->
-  <section id="kampanye">
+  <section id="kampanye" class="reveal">
     <h2>Tentang</h2>
     <p>Media sosial telah menjadi bagian penting dari kehidupan sehari-hari, tempat orang berbagi ide, berita, dan
       pengalaman. Sayangnya, banyak pengguna terburu-buru menyebarkan informasi tanpa memastikan kebenarannya. Kampanye
@@ -293,19 +309,19 @@
   </section>
 
   <!-- Dampak -->
-  <section id="dampak">
+  <section id="dampak" class="reveal">
     <h2>Dampak</h2>
     <div class="cards">
-      <div class="card">
+      <div class="card reveal">
         <h3>Dampak Positif</h3>
         <ul>
-          <li><i class="fas fa-bolt"></i> mencerminkan kepribadian positif.</li>
+          <li><i class="fas fa-bolt"></i> Mencerminkan kepribadian positif.</li>
           <li><i class="fas fa-book"></i> Membantu pembelajaran dan akses pengetahuan.</li>
           <li><i class="fas fa-lightbulb"></i> Menciptakan ruang digital yang sehat.</li>
           <li><i class="fas fa-bullhorn"></i> Mendukung usaha, promosi, dan kegiatan sosial.</li>
         </ul>
       </div>
-      <div class="card">
+      <div class="card reveal">
         <h3>Dampak Negatif</h3>
         <ul>
           <li><i class="fas fa-exclamation-triangle"></i> Penyebaran hoaks yang menimbulkan keresahan.</li>
@@ -318,7 +334,7 @@
   </section>
 
   <!-- Solusi -->
-  <section id="solusi">
+  <section id="solusi" class="reveal">
     <h2>Solusi</h2>
     <ul>
       <li><i class="fas fa-check-circle"></i> Terapkan prinsip <em>“saring sebelum sharing”</em></li>
@@ -352,7 +368,7 @@
   </section>
 
   <!-- Kesimpulan -->
-  <section id="kesimpulan">
+  <section id="kesimpulan" class="reveal">
     <h2>Kesimpulan</h2>
     <p>Media sosial bisa menjadi sarana bermanfaat bila digunakan dengan bijak. Dengan tidak asal sebar informasi, kita
       dapat membantu menciptakan lingkungan digital yang sehat, aman, dan bermanfaat. Bijak bermedia sosial adalah kunci
@@ -360,17 +376,34 @@
   </section>
 
   <!-- Persuasif -->
-  <section id="persuasif" class="persuasif-section">
+  <section id="persuasif" class="persuasif-section reveal">
     <h2><i class="fas fa-bullseye"></i> Ayoo !</h2>
     <p>Gunakan jari dengan bijak, sebarkan kebaikan, dan hentikan kebiasaan asal sebar! Bijak bermedia sosial berawal
       dari langkah kecil kita untuk menciptakan ruang digital yang lebih sehat dan bermanfaat.</p>
   </section>
 
   <!-- Footer -->
-  <footer>
+  <footer class="reveal">
     <p>Literasi Digital | Bijak Bermedia Sosial & Jangan Asal Sebar 2025</p>
   </footer>
 
+  <!-- Script Animasi -->
+  <script>
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
+          observer.unobserve(entry.target); // sekali muncul, stop observe
+        }
+      });
+    }, { threshold: 0.1 });
+
+    reveals.forEach(rev => {
+      observer.observe(rev);
+    });
+  </script>
 </body>
 
 </html>
